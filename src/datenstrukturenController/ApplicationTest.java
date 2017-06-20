@@ -13,8 +13,9 @@ public class ApplicationTest {
 		Produkt Orange = new Produkt(200, "Orange", 100);
 		
 		
-		//Fabrik Fabrik1 = new Fabrik(1000, "Fabrik1");
-		//Erzeuger ApfelMaschine = new Erzeuger(" ApfelMaschine",200,Apfel);
+		Fabrik f = new Fabrik(1000, "Fabrik1");
+		Maschine Kaffee = new Maschine("Kaffee", 300, "Erzeuger");
+		Erzeuger ApfelMaschine = new Erzeuger(" ApfelMaschine",200,Apfel, name);
 	    //   Verwerter kaffeMaschine = new Verwerter("kaffeMaschine", 20,Orange,Apfel,2);
 		
 		
@@ -61,9 +62,8 @@ public class ApplicationTest {
  */
 		
 		
-		
-		//Fabrik1.fuegeMaschineHinzu(ApfelMaschine);
-	//	Fabrik1.fuegeMaschineHinzu(kaffeMaschine);
+		//f.fuegeMaschineHinzu(ApfelMaschine);
+	//	f.fuegeMaschineHinzu(kaffeMaschine);
 		
 		
 		//System.out.println( " Wir haben " +  f.zaehleMachine( "Kaffeemaschine") +  f.getName() );
@@ -100,7 +100,7 @@ public class ApplicationTest {
 		
 		
 		//System.out.println(f.firmaTesten(3));
-	
+	  
 		
 	  
 		 
@@ -128,10 +128,10 @@ public class ApplicationTest {
 		ArrayList<Produkt> produktEntwuerfe=new ArrayList<Produkt>();
 		ArrayList<Maschine> maschinenEntwuerfe=new ArrayList<Maschine>();
 		produktEntwuerfe.add(Apfel);
-		//maschinenEntwuerfe.add(e);
+		maschinenEntwuerfe.add(Kaffee);
 	
 		
-		PanelManager p = new PanelManager(produktEntwuerfe,maschinenEntwuerfe);
+		PanelManager p = new PanelManager(produktEntwuerfe,maschinenEntwuerfe,f);
 		
 		//p.addOrReplaceProduktentwurf(Orange);
 		

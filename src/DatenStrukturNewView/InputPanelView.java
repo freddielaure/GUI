@@ -202,8 +202,13 @@ public class InputPanelView extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panelManager.addOrReplaceMaschinenentwurf(new Maschine(tfMaschineName.getText(),Double.parseDouble(tfMaschineKosten.getText()), (tfVWert.getText())));
-				 updateData();
+				if(checkBox.isSelected()){
+					checkBox.setText("Verwerter");
+				}else{
+					checkBox.setText("Erzeuger");
+				}
+				panelManager.addOrReplaceMaschinenentwurf(new Maschine(tfMaschineName.getText(),Double.parseDouble(tfMaschineKosten.getText()), (checkBox.getText())));
+				 updateData1();
 			}
 				
 				
@@ -215,16 +220,34 @@ public class InputPanelView extends JPanel {
 	
 
 		public void updateData() {
+		
 		comboBox.removeAllItems();
-		comboBox_1.removeAllItems();
 		
 		for (Produkt p : panelManager.getProduktentwürfe()) {
 		    comboBox.addItem(p.getName());
-		    comboBox_1.addItem(p.getName());
+		  
 			label_1.setText(Double.toString(panelManager.getTestguthaben()));
 			
 		}
 	}
+		
+		public void updateData1() {
+			
+			
+			comboBox_1.removeAllItems();
+			
+			for (Maschine m : panelManager.getMaschinenentwürfe()) {
+			   
+			    comboBox_1.addItem(m.getName());
+			
+				
+			}
+		}
+			
+			
+			
+		
+		
 		
 	
 }

@@ -15,7 +15,7 @@ public class ApplicationTest {
 		
 		//Fabrik Fabrik1 = new Fabrik(1000, "Fabrik1");
 		//Erzeuger ApfelMaschine = new Erzeuger(" ApfelMaschine",200,Apfel);
-	 //   Verwerter kaffeMaschine = new Verwerter("kaffeMaschine", 20,Orange,Apfel,2);
+	    //   Verwerter kaffeMaschine = new Verwerter("kaffeMaschine", 20,Orange,Apfel,2);
 		
 		
 		
@@ -128,6 +128,7 @@ public class ApplicationTest {
 		ArrayList<Produkt> produktEntwuerfe=new ArrayList<Produkt>();
 		ArrayList<Maschine> maschinenEntwuerfe=new ArrayList<Maschine>();
 		produktEntwuerfe.add(Apfel);
+		//maschinenEntwuerfe.add(e);
 	
 		
 		PanelManager p = new PanelManager(produktEntwuerfe,maschinenEntwuerfe);

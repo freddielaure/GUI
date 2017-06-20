@@ -76,38 +76,31 @@ public void addOrReplaceProduktentwurf(Produkt produkt) {
 		
 		
 	
-	
-	public ArrayList<Produkt> getProduktEntwueft(){
-		return this.produktEntwuerfe;
-	}
 
+public ArrayList<Produkt> getProduktentwürfe() {
+	return produktEntwuerfe;
+}
 	
 	
 	public void addOrReplaceMaschinenentwurf(Maschine maschine) {
 		for (int i = 0; i < this.maschinenEntwuerfe.size(); i++) {
-			if (maschinenEntwuerfe.get(i).getName().equals(maschine.getName())){
-		
-				maschinenEntwuerfe.set(i, maschine);
-		//maschinenEntwuerfe.remove(maschine);
-		//maschinenEntwuerfe.add(maschine);
-		System.out.println(maschinenEntwuerfe.size());
-		break;
-		
-			} else {
-				maschinenEntwuerfe.add(maschine);
-				System.out.println(produktEntwuerfe.size());
-				break;
-			}
-	}
-	}
+            if (maschinenEntwuerfe.get(i).getName().equals(maschine.getName())) {
+            	maschinenEntwuerfe.set(i, maschine);             
+                System.out.println("set " + maschinenEntwuerfe.size());
+                return;   
+            }
+        }
+		maschinenEntwuerfe.add(maschine);
+        System.out.println("set " + maschinenEntwuerfe.size());
+}
+			
+	
+	
 
 	public ArrayList<Maschine> getMaschinenentwürfe() {
 		return maschinenEntwuerfe;
 	}
 
-	public ArrayList<Produkt> getProduktentwürfe() {
-		return produktEntwuerfe;
-	}
 
 	public void addMaschineToFabrik(int index) {
 		fabrik.fuegeMaschineHinzu(maschinenEntwuerfe.get(index));

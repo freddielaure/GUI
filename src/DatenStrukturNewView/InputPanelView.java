@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
 
+import datenstrukturenController.Maschine;
 import datenstrukturenController.Produkt;
 
 import javax.swing.JButton;
@@ -21,13 +22,15 @@ public class InputPanelView extends JPanel {
 	private JTextField tfName;
 	private JTextField tfPKosten;
 	private JTextField tfVWert;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField tfMaschineName;
+	private JTextField tfMaschineKosten;
+	private JTextField tfAnzahlRunden;
 	
 	private PanelManager panelManager;
 	JComboBox comboBox = new JComboBox();
+	JComboBox comboBox_1 = new JComboBox();
 	JLabel lblTestguthaben = new JLabel("Testguthaben:");
+	JButton Maschineanlegen = new JButton("Maschine anlegen");
 	JLabel label_1 = new JLabel("500,0");
 
 	/**
@@ -115,15 +118,15 @@ public class InputPanelView extends JPanel {
 		lblErzeugnis.setBounds(6, 247, 78, 16);
 		add(lblErzeugnis);
 
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(216, 184, 130, 26);
-		add(textField_3);
+		tfMaschineName = new JTextField();
+		tfMaschineName.setColumns(10);
+		tfMaschineName.setBounds(216, 184, 130, 26);
+		add(tfMaschineName);
 
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(216, 212, 130, 26);
-		add(textField_4);
+		tfMaschineKosten = new JTextField();
+		tfMaschineKosten.setColumns(10);
+		tfMaschineKosten.setBounds(216, 212, 130, 26);
+		add(tfMaschineKosten);
 
 		comboBox.setBounds(216, 244, 130, 27);
 		add(comboBox);
@@ -138,11 +141,11 @@ public class InputPanelView extends JPanel {
 		checkBox.setBounds(6, 281, 34, 26);
 		add(checkBox);
 
-		JComboBox comboBox_1 = new JComboBox();
+		
 		comboBox_1.setBounds(216, 283, 130, 27);
 		add(comboBox_1);
 
-		JButton Maschineanlegen = new JButton("Maschine anlegen");
+		
 		Maschineanlegen.setForeground(Color.RED);
 		Maschineanlegen.setBounds(216, 315, 130, 33);
 		add(Maschineanlegen);
@@ -164,10 +167,10 @@ public class InputPanelView extends JPanel {
 		lblAnzahlDerRunden.setBounds(6, 401, 148, 16);
 		add(lblAnzahlDerRunden);
 
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(216, 397, 130, 26);
-		add(textField_5);
+		tfAnzahlRunden = new JTextField();
+		tfAnzahlRunden.setColumns(10);
+		tfAnzahlRunden.setBounds(216, 397, 130, 26);
+		add(tfAnzahlRunden);
 		
 
 		JButton btnFabrikZurcktsetzen = new JButton("Fabrik zurücktsetzen");
@@ -181,25 +184,45 @@ public class InputPanelView extends JPanel {
 		add(btnTestStarten);
 
 		// Buttons werden dem Listener zugeordnet
+		
+		
 		Produktanlegen.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				panelManager.addOrReplaceProduktentwurf(new Produkt(Double.parseDouble(tfPKosten.getText()),
 						(tfName.getText()), Double.parseDouble(tfVWert.getText())));
-		       updateData() ;
+				 updateData();
 			}
 		});
-	}
-
-	public void updateData() {
-		comboBox.removeAllItems();
-		comboBox.removeAllItems();
 		
-		for (Produkt p : panelManager.getProduktEntwueft()) {
+		Maschineanlegen.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panelManager.addOrReplaceMaschinenentwurf(new Maschine(tfMaschineName.getText(),Double.parseDouble(tfMaschineKosten.getText()), (tfVWert.getText())));
+				 updateData();
+			}
+				
+				
+			
+		});
+		
+	}
+	
+	
+
+		public void updateData() {
+		comboBox.removeAllItems();
+		comboBox_1.removeAllItems();
+		
+		for (Produkt p : panelManager.getProduktentwürfe()) {
 		    comboBox.addItem(p.getName());
-			//label_1.setText(Double.toString(panelManager.getTestguthaben()));
+		    comboBox_1.addItem(p.getName());
+			label_1.setText(Double.toString(panelManager.getTestguthaben()));
 			
 		}
 	}
+		
+	
 }

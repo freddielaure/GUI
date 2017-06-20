@@ -132,7 +132,7 @@ public class ApplicationTest {
 		
 		PanelManager p = new PanelManager(produktEntwuerfe,maschinenEntwuerfe);
 		
-		p.addOrReplaceProduktentwurf(Orange);
+		//p.addOrReplaceProduktentwurf(Orange);
 		
 		
 		

@@ -3,6 +3,7 @@ package DatenStrukturNewView;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -23,8 +24,11 @@ public class InputPanelView extends JPanel {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
+	
 	private PanelManager panelManager;
 	JComboBox comboBox = new JComboBox();
+	JLabel lblTestguthaben = new JLabel("Testguthaben:");
+	JLabel label_1 = new JLabel("500,0");
 
 	/**
 	 * Create the panel.
@@ -138,13 +142,17 @@ public class InputPanelView extends JPanel {
 		comboBox_1.setBounds(216, 283, 130, 27);
 		add(comboBox_1);
 
-		JLabel lblTestguthabensw = new JLabel("Testguthaben:");
-		lblTestguthabensw.setForeground(Color.WHITE);
-		lblTestguthabensw.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		lblTestguthabensw.setBounds(6, 370, 99, 16);
-		add(lblTestguthabensw);
+		JButton Maschineanlegen = new JButton("Maschine anlegen");
+		Maschineanlegen.setForeground(Color.RED);
+		Maschineanlegen.setBounds(216, 315, 130, 33);
+		add(Maschineanlegen);
+		
+		lblTestguthaben.setForeground(Color.WHITE);
+		lblTestguthaben.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
+		lblTestguthaben.setBounds(6, 370, 99, 16);
+		add(lblTestguthaben);
 
-		JLabel label_1 = new JLabel("500,0");
+		
 		label_1.setForeground(Color.WHITE);
 		label_1.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		label_1.setBounds(216, 371, 61, 16);
@@ -179,19 +187,19 @@ public class InputPanelView extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				panelManager.addOrReplaceProduktentwurf(new Produkt(Double.parseDouble(tfPKosten.getText()),
 						(tfName.getText()), Double.parseDouble(tfVWert.getText())));
-				//updateData();
+		       updateData() ;
 			}
 		});
 	}
 
 	public void updateData() {
 		comboBox.removeAllItems();
+		comboBox.removeAllItems();
+		
 		for (Produkt p : panelManager.getProduktEntwueft()) {
+		    comboBox.addItem(p.getName());
+			//label_1.setText(Double.toString(panelManager.getTestguthaben()));
 			
-			comboBox.addItem(p.getName());
-			
-
 		}
-
 	}
 }

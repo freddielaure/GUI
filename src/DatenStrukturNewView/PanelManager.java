@@ -57,46 +57,25 @@ public class PanelManager extends JFrame {
 		});
 	}*/
 	
+		
+public void addOrReplaceProduktentwurf(Produkt produkt) {
+        for (int i = 0; i < this.produktEntwuerfe.size(); i++) {
+            if (produktEntwuerfe.get(i).getName().equals(produkt.getName())) {
+                produktEntwuerfe.set(i, produkt);
+                // produktEntwuerfe.remove(produkt);
+                // produktEntwuerfe.add(produkt);
+                System.out.println("set " + produktEntwuerfe.size());
+                return;
+                
+            }
+           
+        }
+        produktEntwuerfe.add(produkt);
+        System.out.println("set " + produktEntwuerfe.size());
+}
+		
+		
 	
-
-	public void addOrReplaceProduktentwurf(Produkt produkt) {
-		
-		//produktEntwuerfe.add(produkt);
-		for (int i = 0; i < this.produktEntwuerfe.size(); i++) {
-			if (produktEntwuerfe.get(i).getName().equals(produkt.getName())){
-		
-		produktEntwuerfe.set(i, produkt);
-		//produktEntwuerfe.remove(produkt);
-		//produktEntwuerfe.add(produkt);
-		System.out.println(produktEntwuerfe.size());
-		break;
-		
-			} else {
-				produktEntwuerfe.add(produkt);
-				System.out.println(produktEntwuerfe.size());
-				break;
-			}
-			
-		}
-		
-		
-		/*for (int i = 0; i < this.produktEntwuerfe.size(); i++) {
-			if (produktEntwuerfe.get(i).getName().equals(produkt.getName())){
-				
-				produktEntwuerfe.remove( produkt.getName());
-				System.out.println(produktEntwuerfe.size());
-				break;
-				
-				
-			} else {
-				produktEntwuerfe.add(produkt);
-				System.out.println(produktEntwuerfe.size());
-				
-				break;
-			}
-		}*/
-		
-	}
 	
 	public ArrayList<Produkt> getProduktEntwueft(){
 		return this.produktEntwuerfe;
@@ -132,10 +111,12 @@ public class PanelManager extends JFrame {
 
 	public void addMaschineToFabrik(int index) {
 		fabrik.fuegeMaschineHinzu(maschinenEntwuerfe.get(index));
+		inputPanel.updateData() ;
 	}
 
 	public void removeMaschineFromFabrik(int index) {
 		fabrik.entferneMaschine(index);
+		inputPanel.updateData() ;
 	}
 
 	public void resetFabrik() {

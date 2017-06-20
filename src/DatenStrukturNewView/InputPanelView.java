@@ -138,11 +138,11 @@ public class InputPanelView extends JPanel {
 		comboBox_1.setBounds(216, 283, 130, 27);
 		add(comboBox_1);
 
-		JLabel lblTestguthabens = new JLabel("Testguthaben:");
-		lblTestguthabens.setForeground(Color.WHITE);
-		lblTestguthabens.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		lblTestguthabens.setBounds(6, 370, 99, 16);
-		add(lblTestguthabens);
+		JLabel lblTestguthabensw = new JLabel("Testguthaben:");
+		lblTestguthabensw.setForeground(Color.WHITE);
+		lblTestguthabensw.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
+		lblTestguthabensw.setBounds(6, 370, 99, 16);
+		add(lblTestguthabensw);
 
 		JLabel label_1 = new JLabel("500,0");
 		label_1.setForeground(Color.WHITE);

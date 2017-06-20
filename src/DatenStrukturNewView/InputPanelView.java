@@ -179,7 +179,7 @@ public class InputPanelView extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				panelManager.addOrReplaceProduktentwurf(new Produkt(Double.parseDouble(tfPKosten.getText()),
 						(tfName.getText()), Double.parseDouble(tfVWert.getText())));
-				//updateData();
+				updateData();
 			}
 		});
 	}

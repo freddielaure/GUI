@@ -59,26 +59,24 @@ public class PanelManager extends JFrame {
 	
 	
 
-	public void addOrReplaceProduktentwurf(Produkt produkt) {
+public void addOrReplaceProduktentwurf(Produkt produkt) {
+
 		
-		//produktEntwuerfe.add(produkt);
 		for (int i = 0; i < this.produktEntwuerfe.size(); i++) {
-			if (produktEntwuerfe.get(i).getName().equals(produkt.getName())){
-		
-		produktEntwuerfe.set(i, produkt);
-		//produktEntwuerfe.remove(produkt);
-		//produktEntwuerfe.add(produkt);
-		System.out.println(produktEntwuerfe.size());
-		break;
-		
-			} else {
-				produktEntwuerfe.add(produkt);
-				System.out.println(produktEntwuerfe.size());
-				break;
+			if (produktEntwuerfe.get(i).getName().equals(produkt.getName())) {
+
+				produktEntwuerfe.set(i, produkt);
+				// produktEntwuerfe.remove(produkt);
+				// produktEntwuerfe.add(produkt);
+				
+				return;
+
 			}
 			
+
 		}
-		
+		produktEntwuerfe.add(produkt);
+		System.out.println("set " + produktEntwuerfe.size());
 		
 		/*for (int i = 0; i < this.produktEntwuerfe.size(); i++) {
 			if (produktEntwuerfe.get(i).getName().equals(produkt.getName())){

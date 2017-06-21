@@ -133,7 +133,7 @@ public class PanelManager extends JFrame {
 
 	public void start() {
 
-		setSize(1000, 500);
+		setSize(1000, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		setLayout(new BorderLayout(0, 0));

@@ -2,6 +2,8 @@ package DatenStrukturNewView;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -32,6 +34,7 @@ public class InputPanelView extends JPanel {
 	JLabel lblTestguthaben = new JLabel("Testguthaben:");
 	JButton Maschineanlegen = new JButton("Maschine anlegen");
 	JLabel label_1 = new JLabel("500,0");
+	private JTextField textField;
 
 	/**
 	 * Create the panel.
@@ -41,7 +44,7 @@ public class InputPanelView extends JPanel {
 
 		setBackground(Color.GRAY);
 		setLayout(null);
-		setSize(200, 200);
+		//setSize(200, 200);
 		setPreferredSize(new Dimension(500, 500));
 
 		JLabel lblProdukt = new JLabel("Produkt");
@@ -65,7 +68,7 @@ public class InputPanelView extends JPanel {
 		JLabel lblFabriktests = new JLabel("Fabriktests");
 		lblFabriktests.setForeground(Color.ORANGE);
 		lblFabriktests.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
-		lblFabriktests.setBounds(6, 344, 99, 16);
+		lblFabriktests.setBounds(6, 415, 99, 16);
 		add(lblFabriktests);
 
 		JLabel lblProduktkosten = new JLabel("ProduktKosten:");
@@ -145,39 +148,50 @@ public class InputPanelView extends JPanel {
 		add(comboBox_1);
 
 		Maschineanlegen.setForeground(Color.RED);
-		Maschineanlegen.setBounds(216, 315, 130, 33);
+		Maschineanlegen.setBounds(216, 372, 130, 33);
 		add(Maschineanlegen);
 
 		lblTestguthaben.setForeground(Color.WHITE);
 		lblTestguthaben.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		lblTestguthaben.setBounds(6, 370, 99, 16);
+		lblTestguthaben.setBounds(6, 442, 99, 16);
 		add(lblTestguthaben);
 
 		label_1.setForeground(Color.WHITE);
 		label_1.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		label_1.setBounds(216, 371, 61, 16);
+		label_1.setBounds(227, 442, 61, 16);
 		add(label_1);
 
 		JLabel lblAnzahlDerRunden = new JLabel("Anzahl der Runden:");
 		lblAnzahlDerRunden.setForeground(Color.WHITE);
 		lblAnzahlDerRunden.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		lblAnzahlDerRunden.setBounds(6, 401, 148, 16);
+		lblAnzahlDerRunden.setBounds(6, 474, 148, 16);
 		add(lblAnzahlDerRunden);
 
 		tfAnzahlRunden = new JTextField();
 		tfAnzahlRunden.setColumns(10);
-		tfAnzahlRunden.setBounds(216, 397, 130, 26);
+		tfAnzahlRunden.setBounds(216, 470, 130, 26);
 		add(tfAnzahlRunden);
 
 		JButton btnFabrikZurcktsetzen = new JButton("Fabrik zurücktsetzen");
 		btnFabrikZurcktsetzen.setForeground(Color.RED);
-		btnFabrikZurcktsetzen.setBounds(6, 437, 164, 29);
+		btnFabrikZurcktsetzen.setBounds(6, 508, 164, 29);
 		add(btnFabrikZurcktsetzen);
 
 		JButton btnTestStarten = new JButton("Test starten");
 		btnTestStarten.setForeground(Color.RED);
-		btnTestStarten.setBounds(216, 437, 130, 29);
+		btnTestStarten.setBounds(216, 508, 130, 29);
 		add(btnTestStarten);
+		
+		JLabel lblAnzahl = new JLabel("Anzahl:");
+		lblAnzahl.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
+		lblAnzahl.setForeground(Color.WHITE);
+		lblAnzahl.setBounds(6, 326, 61, 16);
+		add(lblAnzahl);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(216, 322, 130, 26);
+		add(textField);
 
 		// Buttons werden dem Listener zugeordnet
 
@@ -185,10 +199,16 @@ public class InputPanelView extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panelManager.addOrReplaceProduktentwurf(new Produkt(Double.parseDouble(tfPKosten.getText()),
-						(tfName.getText()), Double.parseDouble(tfVWert.getText())));
+				if (tfPKosten.getText().isEmpty() || tfName.getText().isEmpty()|| tfVWert.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(panelManager,
+							"Sie müssen Name, Kosten und Wert des Produktes auswählen", "Fehlermeldung",
+							JOptionPane.ERROR_MESSAGE);
+				} else {
+					panelManager.addOrReplaceProduktentwurf(new Produkt(Double.parseDouble(tfPKosten.getText()),
+							(tfName.getText()), Double.parseDouble(tfVWert.getText())));
 
-				updateData();
+					updateData();
+				}
 
 			}
 		});
@@ -197,41 +217,37 @@ public class InputPanelView extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (checkBox.isSelected()) {
-					checkBox.setText("Verwerter");
+				if (tfMaschineName.getText().isEmpty() || tfMaschineKosten.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(panelManager,
+							"Sie müssen Name, Kosten und Bedingung der Maschine auswählen", "Fehlermeldung",
+							JOptionPane.ERROR_MESSAGE);
 				} else {
-					checkBox.setText("Erzeuger");
+					if (checkBox.isSelected()) {
+						checkBox.setText("Verwerter");
+					} else {
+						checkBox.setText("Erzeuger");
+					}
+					panelManager.addOrReplaceMaschinenentwurf(new Maschine(tfMaschineName.getText(),
+							Double.parseDouble(tfMaschineKosten.getText()), (checkBox.getText())));
+					updateData1();
 				}
-				panelManager.addOrReplaceMaschinenentwurf(new Maschine(tfMaschineName.getText(),
-						Double.parseDouble(tfMaschineKosten.getText()), (checkBox.getText())));
-				updateData1();
 			}
-
 		});
-
 	}
 
 	public void updateData() {
-
 		comboBox.removeAllItems();
-
 		for (Produkt p : panelManager.getProduktentwürfe()) {
 			comboBox.addItem(p.getName());
-
 			label_1.setText(Double.toString(panelManager.getTestguthaben()));
-
 		}
 	}
-
+	
 	public void updateData1() {
 
 		comboBox_1.removeAllItems();
-
 		for (Maschine m : panelManager.getMaschinenentwürfe()) {
-
 			comboBox_1.addItem(m.getName());
-
 		}
 	}
-
 }

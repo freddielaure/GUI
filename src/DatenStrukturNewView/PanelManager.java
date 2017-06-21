@@ -1,24 +1,17 @@
 package DatenStrukturNewView;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
+
 import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.Frame;
+
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import datenstrukturenController.Fabrik;
 import datenstrukturenController.Maschine;
 import datenstrukturenController.Produkt;
-
-import datenstrukturenController.test2;
-
-import java.awt.Panel;
 
 public class PanelManager extends JFrame {
 
@@ -28,12 +21,13 @@ public class PanelManager extends JFrame {
 	private Fabrik fabrik;
 	private InputPanelView inputPanel = new InputPanelView(this);
 
-	public PanelManager(ArrayList<Produkt> produktEntwuerfe,	 ArrayList<Maschine> maschinenEntwuerfe) {
+	public PanelManager(ArrayList<Produkt> produktEntwuerfe, ArrayList<Maschine> maschinenEntwuerfe,Fabrik fabrik) {
 
-	    //produktEntwuerfe = new ArrayList<Produkt>();
-		//maschinenEntwuerfe = new ArrayList<Maschine>();
-		this.produktEntwuerfe=produktEntwuerfe;
-		this.maschinenEntwuerfe=maschinenEntwuerfe;
+		// produktEntwuerfe = new ArrayList<Produkt>();
+		// maschinenEntwuerfe = new ArrayList<Maschine>();
+		this.produktEntwuerfe = produktEntwuerfe;
+		this.maschinenEntwuerfe = maschinenEntwuerfe;
+		this.fabrik= fabrik;
 		start();
 
 		/**
@@ -45,37 +39,34 @@ public class PanelManager extends JFrame {
 	/**
 	 * JFrame application.
 	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					new PanelManager();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
-	
-	
+	/*
+	 * public static void main(String[] args) { EventQueue.invokeLater(new
+	 * Runnable() { public void run() { try { new PanelManager(); } catch
+	 * (Exception e) { e.printStackTrace(); } } }); }
+	 */
 
-public void addOrReplaceProduktentwurf(Produkt produkt) {
+	public ArrayList<Produkt> getProduktentwürfe() {
+		return produktEntwuerfe;
+	}
 
-		
+	public void addOrReplaceProduktentwurf(Produkt produkt) {
+
 		for (int i = 0; i < this.produktEntwuerfe.size(); i++) {
 			if (produktEntwuerfe.get(i).getName().equals(produkt.getName())) {
 
 				produktEntwuerfe.set(i, produkt);
 				// produktEntwuerfe.remove(produkt);
 				// produktEntwuerfe.add(produkt);
+
 				System.out.println("set " + produktEntwuerfe.size());
+
 				return;
 
 			}
-			
 
 		}
 		produktEntwuerfe.add(produkt);
+
 		System.out.println("add " + produktEntwuerfe.size());
 		
 		/*for (int i = 0; i < this.produktEntwuerfe.size(); i++) {
@@ -94,46 +85,37 @@ public void addOrReplaceProduktentwurf(Produkt produkt) {
 			}
 		}*/
 		
+
 	}
-	
-	public ArrayList<Produkt> getProduktEntwueft(){
+
+	public ArrayList<Produkt> getProduktEntwueft() {
 		return this.produktEntwuerfe;
 	}
 
-	
-	
 	public void addOrReplaceMaschinenentwurf(Maschine maschine) {
 		for (int i = 0; i < this.maschinenEntwuerfe.size(); i++) {
-			if (maschinenEntwuerfe.get(i).getName().equals(maschine.getName())){
-		
+			if (maschinenEntwuerfe.get(i).getName().equals(maschine.getName())) {
 				maschinenEntwuerfe.set(i, maschine);
-		//maschinenEntwuerfe.remove(maschine);
-		//maschinenEntwuerfe.add(maschine);
-		System.out.println(maschinenEntwuerfe.size());
-		break;
-		
-			} else {
-				maschinenEntwuerfe.add(maschine);
-				System.out.println(produktEntwuerfe.size());
-				break;
+				System.out.println("set " + maschinenEntwuerfe.size());
+				return;
 			}
-	}
+		}
+		maschinenEntwuerfe.add(maschine);
+		System.out.println("set " + maschinenEntwuerfe.size());
 	}
 
 	public ArrayList<Maschine> getMaschinenentwürfe() {
 		return maschinenEntwuerfe;
 	}
 
-	public ArrayList<Produkt> getProduktentwürfe() {
-		return produktEntwuerfe;
-	}
-
 	public void addMaschineToFabrik(int index) {
 		fabrik.fuegeMaschineHinzu(maschinenEntwuerfe.get(index));
+		inputPanel.updateData();
 	}
 
 	public void removeMaschineFromFabrik(int index) {
 		fabrik.entferneMaschine(index);
+		inputPanel.updateData();
 	}
 
 	public void resetFabrik() {
@@ -158,11 +140,6 @@ public void addOrReplaceProduktentwurf(Produkt produkt) {
 		inputPanel.setPreferredSize(new Dimension(500, 500));
 		add(inputPanel, BorderLayout.WEST);
 		inputPanel.updateData();
-		}
+	}
 
-	
-	
-	
-	
-	
 }

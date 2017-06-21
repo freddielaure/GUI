@@ -68,7 +68,7 @@ public void addOrReplaceProduktentwurf(Produkt produkt) {
 				produktEntwuerfe.set(i, produkt);
 				// produktEntwuerfe.remove(produkt);
 				// produktEntwuerfe.add(produkt);
-				
+				System.out.println("set " + produktEntwuerfe.size());
 				return;
 
 			}
@@ -76,7 +76,7 @@ public void addOrReplaceProduktentwurf(Produkt produkt) {
 
 		}
 		produktEntwuerfe.add(produkt);
-		System.out.println("set " + produktEntwuerfe.size());
+		System.out.println("add " + produktEntwuerfe.size());
 		
 		/*for (int i = 0; i < this.produktEntwuerfe.size(); i++) {
 			if (produktEntwuerfe.get(i).getName().equals(produkt.getName())){

@@ -15,11 +15,11 @@ public class ApplicationTest {
 		
 		Fabrik f = new Fabrik(1000, "Fabrik1");
 		Maschine Kaffee = new Maschine("Kaffee", 300, "Erzeuger");
-		Erzeuger ApfelMaschine = new Erzeuger(" ApfelMaschine",200,Apfel, name);
-	    //   Verwerter kaffeMaschine = new Verwerter("kaffeMaschine", 20,Orange,Apfel,2);
+		Erzeuger ApfelMaschine = new Erzeuger(" ApfelMaschine",200,Apfel, "Erzeuger");
+	    Verwerter kaffeMaschine = new Verwerter("kaffeMaschine", 20,Orange,Apfel,2, "Verwerter");
 		
-		
-		
+	
+	    
 		Warenspeicher w = new Warenspeicher();
 		//w.fuegeProduktHinzu(p);
 		w.fuegeProduktHinzu(new Produkt(1, "Tomaten", 5));

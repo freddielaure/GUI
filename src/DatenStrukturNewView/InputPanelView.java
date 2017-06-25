@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -44,7 +45,7 @@ public class InputPanelView extends JPanel {
 
 		setBackground(Color.GRAY);
 		setLayout(null);
-		//setSize(200, 200);
+		// setSize(200, 200);
 		setPreferredSize(new Dimension(500, 500));
 
 		JLabel lblProdukt = new JLabel("Produkt");
@@ -181,13 +182,13 @@ public class InputPanelView extends JPanel {
 		btnTestStarten.setForeground(Color.RED);
 		btnTestStarten.setBounds(216, 508, 130, 29);
 		add(btnTestStarten);
-		
+
 		JLabel lblAnzahl = new JLabel("Anzahl:");
 		lblAnzahl.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		lblAnzahl.setForeground(Color.WHITE);
 		lblAnzahl.setBounds(6, 326, 61, 16);
 		add(lblAnzahl);
-		
+
 		textField = new JTextField();
 		textField.setColumns(10);
 		textField.setBounds(216, 322, 130, 26);
@@ -199,7 +200,7 @@ public class InputPanelView extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (tfPKosten.getText().isEmpty() || tfName.getText().isEmpty()|| tfVWert.getText().isEmpty()) {
+				if (tfPKosten.getText().isEmpty() || tfName.getText().isEmpty() || tfVWert.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(panelManager,
 							"Sie müssen Name, Kosten und Wert des Produktes auswählen", "Fehlermeldung",
 							JOptionPane.ERROR_MESSAGE);
@@ -214,7 +215,6 @@ public class InputPanelView extends JPanel {
 		});
 
 		Maschineanlegen.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (tfMaschineName.getText().isEmpty() || tfMaschineKosten.getText().isEmpty()) {
@@ -229,25 +229,53 @@ public class InputPanelView extends JPanel {
 					}
 					panelManager.addOrReplaceMaschinenentwurf(new Maschine(tfMaschineName.getText(),
 							Double.parseDouble(tfMaschineKosten.getText()), (checkBox.getText())));
-					updateData1();
+					//updateData();
+					MaschinenPanel machinePanel = new MaschinenPanel(panelManager);
+					//revalidate();
+					//repaint();
+					for (int i = 1; i < panelManager.getMaschinenentwürfe().size(); i++) {
+						panelManager.setJpanelToGrid(machinePanel, 0, i);
+						System.out.println(i);
+						machinePanel.getItemPanel().setTyp(checkBox.getText());
+						machinePanel.getItemPanel().setName(panelManager.getMaschinenentwürfe().get(i).getName());
+						machinePanel.getItemPanel().setKosten(panelManager.getMaschinenentwürfe().get(i).getKosten());
+					}
 				}
 			}
 		});
+		
+		// Quand tu clique sur le Checkbox
+		checkBox.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (checkBox.isSelected()) {
+					comboBox_1.setEnabled(true);
+				} else {
+
+					comboBox_1.setEnabled(false);
+
+				}
+
+			}
+		});
+
+	}
+
+	// pour que ca soir desactiver au demarage
+	public void setCheckboxDisable() {
+		comboBox_1.setEnabled(false);
 	}
 
 	public void updateData() {
 		comboBox.removeAllItems();
-		for (Produkt p : panelManager.getProduktentwürfe()) {
-			comboBox.addItem(p.getName());
-			label_1.setText(Double.toString(panelManager.getTestguthaben()));
-		}
-	}
-	
-	public void updateData1() {
-
 		comboBox_1.removeAllItems();
-		for (Maschine m : panelManager.getMaschinenentwürfe()) {
-			comboBox_1.addItem(m.getName());
+		for (Produkt p : panelManager.getProduktEntwueft()) {
+			comboBox.addItem(p.getName());
+			comboBox_1.addItem(p.getName());
+			label_1.setText(Double.toString(panelManager.getTestguthaben()));
+
 		}
 	}
+
 }

@@ -4,7 +4,7 @@ public class Verwerter extends Erzeuger {
 	Produkt abhaengigkeit;
 	int anzahl =0;
 	
-	public Verwerter(String name, double kosten, Produkt abhaengigkeit,Produkt erzeugnis,int anzahl,String typ){
+	public Verwerter(String name, double kosten, Produkt abhaengigkeit,Produkt erzeugnis,int anzahl, String typ){
 		super(name,kosten,erzeugnis,typ);
 		this.abhaengigkeit =abhaengigkeit;
 		this.name=name;
@@ -15,22 +15,18 @@ public class Verwerter extends Erzeuger {
 	}
 
 	public  boolean checkAbhaengigkeit(){
-	    boolean wert =false;
-	
-		  if(this.anzahl<fabrik.warenspeicher.anzahlImSpeicher(abhaengigkeit.getName())){
-			  wert = true;
-		  
-	  }
-	  System.out.println("Es sind genau "+ fabrik.warenspeicher.anzahlProdukte() + " Produkte vorhanden");
-	return wert;
-	  
+	   return (fabrik.getWarenspeicher().anzahlImSpeicher(abhaengigkeit.getName())> anzahl );
 	}
 	
 	 public void produktErzeugen(){
-		 super. produktErzeugen();
-		 super.maschineStarten();
-		  if(checkAbhaengigkeit());
-		System.out.println(this.name + " wurde produziert");
+
+		  if(checkAbhaengigkeit()==true){
+			  super.produktErzeugen();
+			  fabrik.warenspeicher.entferneProdukt(abhaengigkeit.getName(), anzahl);
+		  }else{
+			  System.out.println("Guthabens reicht nicht aus ");
+		  }
+	
  	
 	 }
 	 

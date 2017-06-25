@@ -1,9 +1,10 @@
 package DatenStrukturNewView;
 
 import java.awt.BorderLayout;
-
+import java.awt.Color;
 import java.awt.Dimension;
-
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -12,22 +13,31 @@ import javax.swing.JPanel;
 import datenstrukturenController.Fabrik;
 import datenstrukturenController.Maschine;
 import datenstrukturenController.Produkt;
+import java.awt.GridLayout;
+import java.awt.Insets;
+
+import javax.swing.JButton;
+import java.awt.FlowLayout;
+import javax.swing.JLabel;
 
 public class PanelManager extends JFrame {
 
 	private JPanel contentPane;
+	private JPanel jPanelList = new JPanel();
+	private JPanel title = new JPanel();
 	private ArrayList<Produkt> produktEntwuerfe;
 	private ArrayList<Maschine> maschinenEntwuerfe;
 	private Fabrik fabrik;
 	private InputPanelView inputPanel = new InputPanelView(this);
+	private MaschinenPanel machinePanel = new MaschinenPanel(this);
 
-	public PanelManager(ArrayList<Produkt> produktEntwuerfe, ArrayList<Maschine> maschinenEntwuerfe,Fabrik fabrik) {
+	public PanelManager(ArrayList<Produkt> produktEntwuerfe, ArrayList<Maschine> maschinenEntwuerfe, Fabrik fabrik) {
 
 		// produktEntwuerfe = new ArrayList<Produkt>();
 		// maschinenEntwuerfe = new ArrayList<Maschine>();
 		this.produktEntwuerfe = produktEntwuerfe;
 		this.maschinenEntwuerfe = maschinenEntwuerfe;
-		this.fabrik= fabrik;
+		this.fabrik = fabrik;
 		start();
 
 		/**
@@ -68,23 +78,20 @@ public class PanelManager extends JFrame {
 		produktEntwuerfe.add(produkt);
 
 		System.out.println("add " + produktEntwuerfe.size());
-		
-		/*for (int i = 0; i < this.produktEntwuerfe.size(); i++) {
-			if (produktEntwuerfe.get(i).getName().equals(produkt.getName())){
-				
-				produktEntwuerfe.remove( produkt.getName());
-				System.out.println(produktEntwuerfe.size());
-				break;
-				
-				
-			} else {
-				produktEntwuerfe.add(produkt);
-				System.out.println(produktEntwuerfe.size());
-				
-				break;
-			}
-		}*/
-		
+
+		/*
+		 * for (int i = 0; i < this.produktEntwuerfe.size(); i++) { if
+		 * (produktEntwuerfe.get(i).getName().equals(produkt.getName())){
+		 * 
+		 * produktEntwuerfe.remove( produkt.getName());
+		 * System.out.println(produktEntwuerfe.size()); break;
+		 * 
+		 * 
+		 * } else { produktEntwuerfe.add(produkt);
+		 * System.out.println(produktEntwuerfe.size());
+		 * 
+		 * break; } }
+		 */
 
 	}
 
@@ -136,10 +143,72 @@ public class PanelManager extends JFrame {
 		setSize(1000, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-		setLayout(new BorderLayout(0, 0));
+		getContentPane().setLayout(new BorderLayout(0, 0));
 		inputPanel.setPreferredSize(new Dimension(500, 500));
-		add(inputPanel, BorderLayout.WEST);
+		getContentPane().add(inputPanel, BorderLayout.WEST);
 		inputPanel.updateData();
+		inputPanel.setCheckboxDisable();
+		getContentPane().add(jPanelList, BorderLayout.CENTER);
+		jPanelList.setLayout(new GridLayout(1, 0, 0, 0));
+		// setJpanelToGrid();
+
+		GridBagLayout gbl_panel_1 = new GridBagLayout();
+		gbl_panel_1.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_panel_1.rowHeights = new int[] { 0, 0, 0, 0 };
+		gbl_panel_1.columnWeights = new double[] { 0.0, Double.MIN_VALUE };
+		gbl_panel_1.rowWeights = new double[] { 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		jPanelList.setLayout(gbl_panel_1);
+		
+		JLabel label=new JLabel("bbbbbbbb");
+		
+		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
+		gbc_panel_2.fill = GridBagConstraints.BOTH;
+		gbc_panel_2.gridx = 0;
+		gbc_panel_2.gridy = 0;
+
+		jPanelList.add(label, gbc_panel_2);
+		
+		
+JLabel label2=new JLabel("eeeeeebbb");
+		
+		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
+		gbc_panel_3.fill = GridBagConstraints.CENTER;
+		gbc_panel_3.gridx = 1;
+		gbc_panel_3.gridy = 0;
+
+		jPanelList.add(label2, gbc_panel_3);
+		
+		
+		
+		
+		JLabel label3=new JLabel("eeeerr");
+				
+				GridBagConstraints gbc_panel_4 = new GridBagConstraints();
+				gbc_panel_4.fill = GridBagConstraints.FIRST_LINE_END;
+				gbc_panel_4.gridx = 2;
+				gbc_panel_4.gridy = 0;
+
+				jPanelList.add(label3, gbc_panel_4);
+
+	}
+
+	public void setJpanelToGrid(MaschinenPanel machinePanel, int a, int b) {
+
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.gridx = a;
+		gbc_panel.gridy = b;
+
+		jPanelList.add(machinePanel, gbc_panel);
+
+		//
+		// JButton btnNewButton_1 = new JButton("New button");
+		// GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
+		// gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 0);
+		// gbc_btnNewButton_1.gridx = 0;
+		// gbc_btnNewButton_1.gridy = 0;
+		// jPanelList.add(btnNewButton_1, gbc_btnNewButton_1);
+
 	}
 
 }

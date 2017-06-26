@@ -11,12 +11,8 @@ public class Itempanel extends JPanel {
 
 	public Itempanel() {
 		setLayout(null);
-
-		
 		lbTypName.setBounds(10, 11, 96, 14);
 		add(lbTypName);
-
-		
 		lblTyp.setBounds(71, 11, 96, 14);
 		add(lblTyp);
 

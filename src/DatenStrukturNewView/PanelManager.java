@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 import datenstrukturenController.Fabrik;
 import datenstrukturenController.Maschine;
 import datenstrukturenController.Produkt;
+import datenstrukturenController.Verwerter;
+
 import java.awt.GridLayout;
 import java.awt.Insets;
 
@@ -114,6 +116,8 @@ public class PanelManager extends JFrame {
 	public ArrayList<Maschine> getMaschinenentwürfe() {
 		return maschinenEntwuerfe;
 	}
+	
+	
 
 	public void addMaschineToFabrik(int index) {
 		fabrik.fuegeMaschineHinzu(maschinenEntwuerfe.get(index));
@@ -169,7 +173,7 @@ public class PanelManager extends JFrame {
 		jPanelList.add(label, gbc_panel_2);
 		
 		
-JLabel label2=new JLabel("eeeeeebbb");
+/*JLabel label2=new JLabel("eeeeeebbb");
 		
 		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
 		gbc_panel_3.fill = GridBagConstraints.CENTER;
@@ -188,7 +192,7 @@ JLabel label2=new JLabel("eeeeeebbb");
 				gbc_panel_4.gridx = 2;
 				gbc_panel_4.gridy = 0;
 
-				jPanelList.add(label3, gbc_panel_4);
+				jPanelList.add(label3, gbc_panel_4);*/
 
 	}
 

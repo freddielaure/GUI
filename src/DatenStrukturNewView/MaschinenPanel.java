@@ -24,8 +24,8 @@ public class MaschinenPanel extends JPanel {
     private PanelManager panelManager;
 
     Itempanel p=new Itempanel();
-    Itempanel p1=new Itempanel();
-    Itempanel p2=new Itempanel();
+    Itempanel2 p1=new Itempanel2();
+    Itempanel3 p2=new Itempanel3();
 	public MaschinenPanel(PanelManager panelManager) {
     	this.panelManager = panelManager;
         setLayout(new BorderLayout(0, 0));
@@ -72,6 +72,18 @@ public class MaschinenPanel extends JPanel {
 		return this.p;
 	}
        
+	public Itempanel2 getItemPanel2(){
+		return this.p1;
+	}
+       
+	
+	public Itempanel3 getItemPanel3(){
+		return this.p2;
+	}
+	
+	public void SetNameHide(){
+		p2.hide();
+	}
 	
 	
 	  

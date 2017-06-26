@@ -13,9 +13,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
+import javax.xml.bind.ParseConversionEvent;
 
 import datenstrukturenController.Maschine;
 import datenstrukturenController.Produkt;
+import datenstrukturenController.Verwerter;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -205,10 +207,17 @@ public class InputPanelView extends JPanel {
 							"Sie müssen Name, Kosten und Wert des Produktes auswählen", "Fehlermeldung",
 							JOptionPane.ERROR_MESSAGE);
 				} else {
+					if (checkBox.isSelected()) {
+						checkBox.setText("Verwerter");
+					} else {
+						checkBox.setText("Erzeuger");
+					}
+
 					panelManager.addOrReplaceProduktentwurf(new Produkt(Double.parseDouble(tfPKosten.getText()),
 							(tfName.getText()), Double.parseDouble(tfVWert.getText())));
 
 					updateData();
+
 				}
 
 			}
@@ -222,28 +231,62 @@ public class InputPanelView extends JPanel {
 							"Sie müssen Name, Kosten und Bedingung der Maschine auswählen", "Fehlermeldung",
 							JOptionPane.ERROR_MESSAGE);
 				} else {
+
+					// updateData();
+					MaschinenPanel machinePanel = new MaschinenPanel(panelManager);
+					// revalidate();
+					// repaint();
+
 					if (checkBox.isSelected()) {
 						checkBox.setText("Verwerter");
+						panelManager.addOrReplaceMaschinenentwurf(new Verwerter(tfMaschineName.getText(),
+								Double.parseDouble(tfMaschineKosten.getText()), getProduktAbhangigkeit(),
+								getProduktAbhangigkeit(), Integer.parseInt(textField.getText()), (checkBox.getText())));
+
+						machinePanel.getItemPanel3().setlblOuputAnzahl(Integer.parseInt(textField.getText()));
+						for (int i = 1; i < panelManager.getMaschinenentwürfe().size(); i++) {
+							panelManager.setJpanelToGrid(machinePanel, 0, i);
+							System.out.println(i);
+							machinePanel.getItemPanel().setTyp(checkBox.getText());
+							machinePanel.getItemPanel().setName(panelManager.getMaschinenentwürfe().get(i).getName());
+							machinePanel.getItemPanel()
+									.setKosten(panelManager.getMaschinenentwürfe().get(i).getKosten());
+							machinePanel.getItemPanel2().setName(panelManager.getProduktEntwueft().get(i).getName());
+							machinePanel.getItemPanel2()
+									.setHerstellungskosten(panelManager.getProduktentwürfe().get(i).getKosten());
+							machinePanel.getItemPanel2()
+									.setVerkauftwert(panelManager.getProduktentwürfe().get(i).getVerkaufswert());
+							machinePanel.getItemPanel3()
+									.setHerstellungskosten(panelManager.getProduktentwürfe().get(i).getKosten());
+							machinePanel.getItemPanel3()
+									.setVerkauftwert(panelManager.getProduktentwürfe().get(i).getVerkaufswert());
+							machinePanel.getItemPanel3().setName(panelManager.getProduktentwürfe().get(i).getName());
+
+						}
 					} else {
 						checkBox.setText("Erzeuger");
+						panelManager.addOrReplaceMaschinenentwurf(new Maschine(tfMaschineName.getText(),
+								Double.parseDouble(tfMaschineKosten.getText()), (checkBox.getText())));
+						for (int i = 1; i < panelManager.getMaschinenentwürfe().size(); i++) {
+							panelManager.setJpanelToGrid(machinePanel, 0, i);
+							System.out.println(i);
+							machinePanel.getItemPanel().setTyp(checkBox.getText());
+							machinePanel.getItemPanel().setName(panelManager.getMaschinenentwürfe().get(i).getName());
+							machinePanel.getItemPanel()
+									.setKosten(panelManager.getMaschinenentwürfe().get(i).getKosten());
+							machinePanel.getItemPanel2().setName(panelManager.getProduktEntwueft().get(i).getName());
+							machinePanel.getItemPanel2()
+									.setHerstellungskosten(panelManager.getProduktentwürfe().get(i).getKosten());
+							machinePanel.getItemPanel2()
+									.setVerkauftwert(panelManager.getProduktentwürfe().get(i).getVerkaufswert());
+							machinePanel.SetNameHide();
+						}
 					}
-					panelManager.addOrReplaceMaschinenentwurf(new Maschine(tfMaschineName.getText(),
-							Double.parseDouble(tfMaschineKosten.getText()), (checkBox.getText())));
-					//updateData();
-					MaschinenPanel machinePanel = new MaschinenPanel(panelManager);
-					//revalidate();
-					//repaint();
-					for (int i = 1; i < panelManager.getMaschinenentwürfe().size(); i++) {
-						panelManager.setJpanelToGrid(machinePanel, 0, i);
-						System.out.println(i);
-						machinePanel.getItemPanel().setTyp(checkBox.getText());
-						machinePanel.getItemPanel().setName(panelManager.getMaschinenentwürfe().get(i).getName());
-						machinePanel.getItemPanel().setKosten(panelManager.getMaschinenentwürfe().get(i).getKosten());
-					}
+
 				}
 			}
 		});
-		
+
 		// Quand tu clique sur le Checkbox
 		checkBox.addActionListener(new ActionListener() {
 
@@ -273,9 +316,14 @@ public class InputPanelView extends JPanel {
 		for (Produkt p : panelManager.getProduktEntwueft()) {
 			comboBox.addItem(p.getName());
 			comboBox_1.addItem(p.getName());
+
 			label_1.setText(Double.toString(panelManager.getTestguthaben()));
 
 		}
+	}
+
+	public Produkt getProduktAbhangigkeit() {
+		return new Produkt(5, comboBox_1.getName(), 5.0);
 	}
 
 }

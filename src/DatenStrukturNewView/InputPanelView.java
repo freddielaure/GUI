@@ -246,7 +246,7 @@ public class InputPanelView extends JPanel {
 						machinePanel.getItemPanel3().setlblOuputAnzahl(Integer.parseInt(textField.getText()));
 						for (int i = 1; i < panelManager.getMaschinenentwürfe().size(); i++) {
 							panelManager.setJpanelToGrid(machinePanel, 0, i);
-							System.out.println(i);ss
+							System.out.println(i);
 							machinePanel.getItemPanel().setTyp(checkBox.getText());
 							machinePanel.getItemPanel().setName(panelManager.getMaschinenentwürfe().get(i).getName());
 							machinePanel.getItemPanel()

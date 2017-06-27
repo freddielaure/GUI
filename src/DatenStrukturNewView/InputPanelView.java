@@ -27,7 +27,7 @@ public class InputPanelView extends JPanel {
 	private JTextField tfName;
 	private JTextField tfPKosten;
 	private JTextField tfVWert;
-	private JTextField tfMaschineName;
+	protected JTextField tfMaschineName;
 	private JTextField tfMaschineKosten;
 	private JTextField tfAnzahlRunden;
 
@@ -36,7 +36,10 @@ public class InputPanelView extends JPanel {
 	JComboBox comboBox_1 = new JComboBox();
 	JLabel lblTestguthaben = new JLabel("Testguthaben:");
 	JButton Maschineanlegen = new JButton("Maschine anlegen");
+	JButton Produktanlegen = new JButton("Produkt anlegen");
 	JLabel label_1 = new JLabel("500,0");
+	JCheckBox checkBox = new JCheckBox("");
+	JLabel lblAnzahl = new JLabel("Anzahl:");
 	private JTextField textField;
 
 	/**
@@ -101,7 +104,7 @@ public class InputPanelView extends JPanel {
 		tfVWert.setBounds(216, 86, 130, 26);
 		add(tfVWert);
 
-		JButton Produktanlegen = new JButton("Produkt anlegen");
+		
 		Produktanlegen.setForeground(Color.RED);
 		Produktanlegen.setBounds(216, 118, 130, 29);
 		add(Produktanlegen);
@@ -143,7 +146,7 @@ public class InputPanelView extends JPanel {
 		lblBedingung.setBounds(35, 281, 95, 26);
 		add(lblBedingung);
 
-		JCheckBox checkBox = new JCheckBox("");
+		
 		checkBox.setBounds(6, 281, 34, 26);
 		add(checkBox);
 
@@ -185,7 +188,7 @@ public class InputPanelView extends JPanel {
 		btnTestStarten.setBounds(216, 508, 130, 29);
 		add(btnTestStarten);
 
-		JLabel lblAnzahl = new JLabel("Anzahl:");
+		
 		lblAnzahl.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		lblAnzahl.setForeground(Color.WHITE);
 		lblAnzahl.setBounds(6, 326, 61, 16);
@@ -232,10 +235,10 @@ public class InputPanelView extends JPanel {
 							JOptionPane.ERROR_MESSAGE);
 				} else {
 
-					// updateData();
+				 updateData();
 					MaschinenPanel machinePanel = new MaschinenPanel(panelManager);
-					// revalidate();
-					// repaint();
+					revalidate();
+				    repaint();
 
 					if (checkBox.isSelected()) {
 						checkBox.setText("Verwerter");

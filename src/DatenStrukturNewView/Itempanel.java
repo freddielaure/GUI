@@ -3,6 +3,11 @@ package DatenStrukturNewView;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+
 public class Itempanel extends JPanel {
 	JLabel lbTypName = new JLabel("Typ");
 	JLabel lblTyp = new JLabel();
@@ -31,11 +36,17 @@ public class Itempanel extends JPanel {
 		
 		kosten.setBounds(71, 61, 96, 14);
 		add(kosten);
-
+		
+		
+		
 	}
 
 	public void setTyp(String typ) {
 		this.lblTyp.setText(typ);
+	}
+	
+	public String getTyp() {
+		return this.lblTyp.getText();
 	}
 	
 	public void setName(String name) {
@@ -45,6 +56,4 @@ public class Itempanel extends JPanel {
 	public void setKosten(double kosten) {
 	this.kosten.setText(Double.toString(kosten));
 	}
-	
-	
 }

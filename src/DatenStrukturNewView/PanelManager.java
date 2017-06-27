@@ -9,6 +9,9 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import datenstrukturenController.Fabrik;
 import datenstrukturenController.Maschine;
@@ -17,6 +20,11 @@ import datenstrukturenController.Verwerter;
 
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.Label;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import java.awt.FlowLayout;
@@ -32,6 +40,8 @@ public class PanelManager extends JFrame {
 	private Fabrik fabrik;
 	private InputPanelView inputPanel = new InputPanelView(this);
 	private MaschinenPanel machinePanel = new MaschinenPanel(this);
+	public AuswahlPanel  auswahlPanel  = new AuswahlPanel (this);
+	 JButton labelAll =new JButton("bbbbbbbb");
 
 	public PanelManager(ArrayList<Produkt> produktEntwuerfe, ArrayList<Maschine> maschinenEntwuerfe, Fabrik fabrik) {
 
@@ -39,6 +49,7 @@ public class PanelManager extends JFrame {
 		// maschinenEntwuerfe = new ArrayList<Maschine>();
 		this.produktEntwuerfe = produktEntwuerfe;
 		this.maschinenEntwuerfe = maschinenEntwuerfe;
+		this.auswahlPanel =auswahlPanel;
 		this.fabrik = fabrik;
 		start();
 
@@ -143,8 +154,10 @@ public class PanelManager extends JFrame {
 	}
 
 	public void start() {
-
+ 
+ 
 		setSize(1000, 600);
+		setTitle("AI-Aufgabe2");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		getContentPane().setLayout(new BorderLayout(0, 0));
@@ -155,6 +168,15 @@ public class PanelManager extends JFrame {
 		getContentPane().add(jPanelList, BorderLayout.CENTER);
 		jPanelList.setLayout(new GridLayout(1, 0, 0, 0));
 		// setJpanelToGrid();
+		JFrame j = new JFrame();
+        j.setSize(400, 600);
+		j.setTitle("Ihre AuswahlListe");
+		j.add(auswahlPanel);
+		 j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	     j.setVisible(true);
+		
+       
+        
 
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -163,17 +185,17 @@ public class PanelManager extends JFrame {
 		gbl_panel_1.rowWeights = new double[] { 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		jPanelList.setLayout(gbl_panel_1);
 		
-		JLabel label=new JLabel("bbbbbbbb");
+		
 		
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
 		gbc_panel_2.fill = GridBagConstraints.BOTH;
 		gbc_panel_2.gridx = 0;
 		gbc_panel_2.gridy = 0;
 
-		jPanelList.add(label, gbc_panel_2);
+		jPanelList.add(labelAll, gbc_panel_2);
 		
 		
-/*JLabel label2=new JLabel("eeeeeebbb");
+      JLabel label2=new JLabel("eeeeeebbb");
 		
 		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
 		gbc_panel_3.fill = GridBagConstraints.CENTER;
@@ -192,9 +214,15 @@ public class PanelManager extends JFrame {
 				gbc_panel_4.gridx = 2;
 				gbc_panel_4.gridy = 0;
 
-				jPanelList.add(label3, gbc_panel_4);*/
-
+				jPanelList.add(label3, gbc_panel_4);
+		
+		
+				
+				
+	
 	}
+	
+       
 
 	public void setJpanelToGrid(MaschinenPanel machinePanel, int a, int b) {
 
@@ -212,7 +240,14 @@ public class PanelManager extends JFrame {
 		// gbc_btnNewButton_1.gridx = 0;
 		// gbc_btnNewButton_1.gridy = 0;
 		// jPanelList.add(btnNewButton_1, gbc_btnNewButton_1);
+		
+	
 
 	}
+	
+	
+	
+	
+	
 
 }
